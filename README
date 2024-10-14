@@ -1,7 +1,7 @@
 sidvis-sidplayfp
 ================
 
-https://github.com/libsidplayfp/sidplayfp
+https://github.com/acrouzet/sidvis-sidplayfp
 
 sidplayfp is a console C64 music player which uses the libsidplayfp engine
 to provide the best SID listening experience.
