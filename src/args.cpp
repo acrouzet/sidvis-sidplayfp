@@ -221,6 +221,13 @@ int ConsolePlayer::args(int argc, const char *argv[])
                 if (argv[i][3] == '\0')
                     m_filter.enabled = false;
             }
+			
+			// Trigger wave options
+            else if (strncmp (&argv[i][1], "tw", 2) == 0)
+            {
+                if (argv[i][3] == '\0')
+                    m_tgrwaves.enabled = true;
+            }
 
             // Track options
             else if (strncmp (&argv[i][1], "ols", 3) == 0)
