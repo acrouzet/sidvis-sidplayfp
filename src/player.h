@@ -198,7 +198,7 @@ private:
         bool           enabled;
     } m_filter;
 	
-	struct m_tgrwaves_t
+    struct m_tgrwaves_t
     {
         bool           enabled;
     } m_tgrwaves;
