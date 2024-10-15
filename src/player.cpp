@@ -344,7 +344,7 @@ ConsolePlayer::ConsolePlayer (const char * const name) :
 #endif
     // Other defaults
     m_filter.enabled   = true;
-	m_tgrwaves.enabled = false;
+    m_tgrwaves.enabled = false;
     m_driver.device    = nullptr;
     m_driver.sid       = EMU_RESIDFP;
     m_timer.start      = 0;
