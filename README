@@ -15,21 +15,6 @@ Copyright (c) 2010-2024 Leandro Nini <drfiemost@users.sourceforge.net>
 
 -----------------------------------------------------------------------------
 
-* Easy Build on Windows with MSYS2 UCRT64 
-These instructions should only be used by those who would have no idea what 
-to do otherwise and are only using MSYS2 to compile this program.
-
-In the UCRT64 bash terminal, enter the following commands:
-# pacman -S git 
-# git clone https://github.com/acrouzet/sidvis-libsidplayfp.git --recurse-submodules 
-# cd sidvis-libsidplayfp 
-# ./msys2.sh
-
-The sidplayfp executable should be in:
-<msys2 install directory>/ucrt64/bin/sidplayfp.exe
-
------------------------------------------------------------------------------
-
 stilview
 ========
 
