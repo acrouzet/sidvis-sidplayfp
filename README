@@ -6,15 +6,8 @@ https://github.com/acrouzet/sidvis-sidplayfp
 sidplayfp is a console C64 music player which uses the libsidplayfp engine
 to provide the best SID listening experience.
 
-Changes in sidvis-(lib)sidplayfp:
-- The external high-pass filtering and oscillator leakage has been removed 
-  from the residfp engine, which allows the SID's DC bias to be cancelled 
-  without filtering. High-pass filters typically cancel DC bias imperfectly, 
-  which may complicate triggering on an oscilloscope.
-- The -tw argument switches out waveforms that can be particularly difficult
-  to trigger with simpler ones. In particular, pulse waves and 
-  sawtooth-combined waves are replaced with sawtooth waves, and 
-  triangle+pulse combined waves are replaced with triangle waves.
+This fork is meant to be used with the sidvis .wav creator script.
+For information, please go to https://github.com/acrouzet/sidvis
 
 Copyright (c) 2000 Simon White
 Copyright (c) 2007-2010 Antti Lankila
