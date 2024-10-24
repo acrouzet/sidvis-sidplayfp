@@ -91,6 +91,13 @@ the second one and 7 to 9 for the third.
 Mute samples.  May be used more than one time, 1 for the first
 SID, 2 for the second one and 3 for the third.
 
+=item B<-tw>I<< <num> >>
+
+Switch out pulse and combined waveforms on a channel.  May be 
+used more than one time.  Channel 1 to 3 are for the first SID 
+chip while channels from 4 to 6 are for the second one and 7 to 
+9 for the third.
+
 =item B<-p>I<< <num> >>
 
 Set bit precision for file saving. The default is 16
