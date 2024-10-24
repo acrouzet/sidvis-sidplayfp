@@ -95,7 +95,7 @@ SID, 2 for the second one and 3 for the third.
 
 Switch out difficult-to-trigger waveforms on a channel. Pulse waves 
 and sawtooth-combined waves will be replaced with sawtooth waves, and 
-triangle+pulse combined waves will be replaced with triangle waves.
+triangle+pulse waves will be replaced with triangle waves.
 May be used more than one time.  Channel 1 to 3 are for the first SID 
 chip while channels from 4 to 6 are for the second one and 7 to 9 for 
 the third.
