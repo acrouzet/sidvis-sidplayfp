@@ -904,8 +904,6 @@ void ConsolePlayer::close ()
     if (m_state == playerExit)
     {   // Natural finish
         emuflush ();
-        if (m_driver.file)
-            cerr << (char) 7; // Bell
     }
     else // Destroy buffers
         m_driver.selected->reset ();
