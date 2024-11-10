@@ -221,6 +221,13 @@ int ConsolePlayer::args(int argc, const char *argv[])
                 if (argv[i][3] == '\0')
                     m_filter.enabled = false;
             }
+            
+            // Triggerwaves
+            else if (strncmp (&argv[i][1], "tw", 2) == 0)
+            {
+                if (argv[i][3] == '\0')
+                    m_tgrwaves.enabled = true;
+            }
 
             // Track options
             else if (strncmp (&argv[i][1], "ols", 3) == 0)
@@ -259,19 +266,6 @@ int ConsolePlayer::args(int argc, const char *argv[])
                 }
             }
 
-            // Trigger waves
-            else if (strncmp (&argv[i][1], "tw", 2) == 0)
-            {
-                if (argv[i][3] == '\0')
-                    err = true;
-                else
-                {
-                    const int voice = atoi(&argv[i][3]);
-                    if (voice > 0 && voice <= m_tgrwaves.size())
-                        m_tgrwaves[voice-1] = true;
-                }
-            }
-			
 #ifdef FEAT_SAMPLE_MUTE
             // Sample muting
             else if (argv[i][1] == 'g')
@@ -439,7 +433,7 @@ int ConsolePlayer::args(int argc, const char *argv[])
             else if (std::strcmp (&argv[i][1], "cws") == 0)
             {
                 m_combinedWaveformsStrength  = SidConfig::STRONG;
-            }	
+            }   
 #endif
             // File format conversions
             else if (argv[i][1] == 'w')

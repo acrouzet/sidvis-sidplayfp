@@ -343,19 +343,20 @@ ConsolePlayer::ConsolePlayer (const char * const name) :
     memset(m_registers, 0, 32*3);
 #endif
     // Other defaults
-    m_filter.enabled = true;
-    m_driver.device  = nullptr;
-    m_driver.sid     = EMU_RESIDFP;
-    m_timer.start    = 0;
-    m_timer.length   = 0; // FOREVER
-    m_timer.valid    = false;
-    m_timer.starting = false;
-    m_track.first    = 0;
-    m_track.selected = 0;
-    m_track.loop     = false;
-    m_track.single   = false;
-    m_speed.current  = 1;
-    m_speed.max      = 32;
+    m_filter.enabled   = true;
+    m_tgrwaves.enabled = false;
+    m_driver.device    = nullptr;
+    m_driver.sid       = EMU_RESIDFP;
+    m_timer.start      = 0;
+    m_timer.length     = 0; // FOREVER
+    m_timer.valid      = false;
+    m_timer.starting   = false;
+    m_track.first      = 0;
+    m_track.selected   = 0;
+    m_track.loop       = false;
+    m_track.single     = false;
+    m_speed.current    = 1;
+    m_speed.max        = 32;
 
     // Read default configuration
     m_iniCfg.read ();
@@ -815,7 +816,11 @@ bool ConsolePlayer::open (void)
     m_engine.filter(1, m_filter.enabled);
     m_engine.filter(2, m_filter.enabled);
 #endif
-	
+
+    m_engine.tgrwaves(0, m_tgrwaves.enabled);
+    m_engine.tgrwaves(1, m_tgrwaves.enabled);
+    m_engine.tgrwaves(2, m_tgrwaves.enabled);
+
 #ifdef FEAT_REGS_DUMP_SID
     if (
             (
@@ -848,15 +853,6 @@ bool ConsolePlayer::open (void)
     m_engine.mute(1, 3, m_mute_samples[1]);
     m_engine.mute(2, 3, m_mute_samples[2]);
 #endif
-    m_engine.tgrwaves(0, 0, m_tgrwaves[0]);
-    m_engine.tgrwaves(0, 1, m_tgrwaves[1]);
-    m_engine.tgrwaves(0, 2, m_tgrwaves[2]);
-    m_engine.tgrwaves(1, 0, m_tgrwaves[3]);
-    m_engine.tgrwaves(1, 1, m_tgrwaves[4]);
-    m_engine.tgrwaves(1, 2, m_tgrwaves[5]);
-    m_engine.tgrwaves(2, 0, m_tgrwaves[6]);
-    m_engine.tgrwaves(2, 1, m_tgrwaves[7]);
-    m_engine.tgrwaves(2, 2, m_tgrwaves[8]);
 
     // As yet we don't have a required songlength
     // so try the songlength database or keep the default

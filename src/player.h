@@ -179,7 +179,6 @@ private:
 #ifdef FEAT_SAMPLE_MUTE
     std::bitset<3>     m_mute_samples;
 #endif
-    std::bitset<9>     m_tgrwaves;
 
     int  m_channels;
     int  m_precision;
@@ -198,6 +197,11 @@ private:
 
         bool           enabled;
     } m_filter;
+
+    struct m_tgrwaves_t
+    {
+        bool           enabled;
+    } m_tgrwaves;
 
     struct m_driver_t
     {
