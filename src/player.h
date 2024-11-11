@@ -184,6 +184,11 @@ private:
     int  m_precision;
     int  m_buffer_size;
 
+    struct m_tgrwaves_t
+    {
+        bool           enabled;
+    } m_tgrwaves;
+
     struct m_filter_t
     {
         // Filter parameter for reSID
@@ -197,11 +202,6 @@ private:
 
         bool           enabled;
     } m_filter;
-
-    struct m_tgrwaves_t
-    {
-        bool           enabled;
-    } m_tgrwaves;
 
     struct m_driver_t
     {

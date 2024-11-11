@@ -343,8 +343,8 @@ ConsolePlayer::ConsolePlayer (const char * const name) :
     memset(m_registers, 0, 32*3);
 #endif
     // Other defaults
-    m_filter.enabled   = true;
-    m_tgrwaves.enabled = false;
+    m_tgrwaves.enabled = false;    
+	m_filter.enabled   = true;
     m_driver.device    = nullptr;
     m_driver.sid       = EMU_RESIDFP;
     m_timer.start      = 0;
@@ -811,16 +811,15 @@ bool ConsolePlayer::open (void)
         return false;
     }
 
+    m_engine.tgrwaves(0, m_tgrwaves.enabled);
+    m_engine.tgrwaves(1, m_tgrwaves.enabled);
+    m_engine.tgrwaves(2, m_tgrwaves.enabled);
+
 #ifdef FEAT_FILTER_DISABLE
     m_engine.filter(0, m_filter.enabled);
     m_engine.filter(1, m_filter.enabled);
     m_engine.filter(2, m_filter.enabled);
 #endif
-
-    m_engine.tgrwaves(0, m_tgrwaves.enabled);
-    m_engine.tgrwaves(1, m_tgrwaves.enabled);
-    m_engine.tgrwaves(2, m_tgrwaves.enabled);
-
 #ifdef FEAT_REGS_DUMP_SID
     if (
             (

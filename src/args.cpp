@@ -215,18 +215,18 @@ int ConsolePlayer::args(int argc, const char *argv[])
                 m_engCfg.frequency = (uint_least32_t) atoi (argv[i]+2);
             }
 
-            // No filter options
-            else if (strncmp (&argv[i][1], "nf", 2) == 0)
-            {
-                if (argv[i][3] == '\0')
-                    m_filter.enabled = false;
-            }
-            
             // Triggerwaves
             else if (strncmp (&argv[i][1], "tw", 2) == 0)
             {
                 if (argv[i][3] == '\0')
                     m_tgrwaves.enabled = true;
+            }
+			
+			// No filter options
+            else if (strncmp (&argv[i][1], "nf", 2) == 0)
+            {
+                if (argv[i][3] == '\0')
+                    m_filter.enabled = false;
             }
 
             // Track options
