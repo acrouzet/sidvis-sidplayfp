@@ -221,8 +221,8 @@ int ConsolePlayer::args(int argc, const char *argv[])
                 if (argv[i][3] == '\0')
                     m_tgrwaves.enabled = true;
             }
-			
-			// No filter options
+            
+            // No filter options
             else if (strncmp (&argv[i][1], "nf", 2) == 0)
             {
                 if (argv[i][3] == '\0')
