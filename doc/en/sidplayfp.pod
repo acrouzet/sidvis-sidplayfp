@@ -91,6 +91,10 @@ the second one and 7 to 9 for the third.
 Mute samples.  May be used more than one time, 1 for the first
 SID, 2 for the second one and 3 for the third.
 
+=item B<-ne>
+
+Disable envelopes.
+
 =item B<-tw>
 
 Switch out some difficult-to-trigger waveforms with simpler ones.

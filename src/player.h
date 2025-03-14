@@ -186,10 +186,15 @@ private:
     int  m_precision;
     int  m_buffer_size;
 
-    struct m_triggerwaves_t
+    struct m_envelope_t
     {
         bool           enabled;
-    } m_triggerwaves;
+    } m_envelope;
+	
+    struct m_tgrwaves_t
+    {
+        bool           enabled;
+    } m_tgrwaves;
 
     struct m_filter_t
     {

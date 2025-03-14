@@ -343,20 +343,21 @@ ConsolePlayer::ConsolePlayer (const char * const name) :
     std::memset(m_registers, 0, 32*3);
 #endif
     // Other defaults
-    m_triggerwaves.enabled = false;    
-    m_filter.enabled       = true;
-    m_driver.device        = nullptr;
-    m_driver.sid           = EMU_RESIDFP;
-    m_timer.start          = 0;
-    m_timer.length         = 0; // FOREVER
-    m_timer.valid          = false;
-    m_timer.starting       = false;
-    m_track.first          = 0;
-    m_track.selected       = 0;
-    m_track.loop           = false;
-    m_track.single         = false;
-    m_speed.current        = 1;
-    m_speed.max            = 32;
+    m_envelope.enabled = true;
+    m_tgrwaves.enabled = false;
+    m_filter.enabled   = true;
+    m_driver.device    = nullptr;
+    m_driver.sid       = EMU_RESIDFP;
+    m_timer.start      = 0;
+    m_timer.length     = 0; // FOREVER
+    m_timer.valid      = false;
+    m_timer.starting   = false;
+    m_track.first      = 0;
+    m_track.selected   = 0;
+    m_track.loop       = false;
+    m_track.single     = false;
+    m_speed.current    = 1;
+    m_speed.max        = 32;
 
     // Read default configuration
     m_iniCfg.read ();
@@ -811,9 +812,13 @@ bool ConsolePlayer::open (void)
         return false;
     }
 
-    m_engine.triggerwaves(0, m_triggerwaves.enabled);
-    m_engine.triggerwaves(1, m_triggerwaves.enabled);
-    m_engine.triggerwaves(2, m_triggerwaves.enabled);
+    m_engine.tgrwaves(0, m_tgrwaves.enabled);
+    m_engine.tgrwaves(1, m_tgrwaves.enabled);
+    m_engine.tgrwaves(2, m_tgrwaves.enabled);
+    
+    m_engine.envelope(0, m_envelope.enabled);
+    m_engine.envelope(1, m_envelope.enabled);
+    m_engine.envelope(2, m_envelope.enabled);
 
 #ifdef FEAT_FILTER_DISABLE
     m_engine.filter(0, m_filter.enabled);
