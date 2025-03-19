@@ -226,7 +226,14 @@ int ConsolePlayer::args(int argc, const char *argv[])
             else if (strncmp (&argv[i][1], "tw", 2) == 0)
             {
                 if (argv[i][3] == '\0')
-                    m_tgrwaves.enabled = true;
+                    m_triggerwaves.enabled = true;
+            }
+			
+            // Triggerfilter
+            else if (strncmp (&argv[i][1], "tf", 2) == 0)
+            {
+                if (argv[i][3] == '\0')
+                    m_triggerfilter.enabled = true;
             }
             
             // No filter options

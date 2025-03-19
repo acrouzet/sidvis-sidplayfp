@@ -191,10 +191,15 @@ private:
         bool           enabled;
     } m_envelope;
 	
-    struct m_tgrwaves_t
+    struct m_triggerwaves_t
     {
         bool           enabled;
-    } m_tgrwaves;
+    } m_triggerwaves;
+	
+	struct m_triggerfilter_t
+    {
+        bool           enabled;
+    } m_triggerfilter;
 
     struct m_filter_t
     {
