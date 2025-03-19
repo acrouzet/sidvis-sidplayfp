@@ -99,6 +99,10 @@ Disable envelopes.
 
 Switch out some difficult-to-trigger waveforms with simpler ones.
 
+=item B<-tf>
+
+Disable filter modes that are not lowpass or lowpass+bandpass, and invert the output when filter is on.
+
 =item B<-p>I<< <num> >>
 
 Set bit precision for file saving. The default is 16
