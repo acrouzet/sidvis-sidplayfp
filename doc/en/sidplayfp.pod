@@ -37,11 +37,6 @@ Display additional options helpful for debugging.
 
 Set audio output frequency in Hz (default: 48000).
 
-=item B<-nf>
-
-No filter emulation.  This will reduce CPU overhead at the cost
-of reduced emulation quality.
-
 =item B<-s>
 
 Stereo playback.  If the tune is identified as stereo then sid 1
@@ -102,6 +97,11 @@ Switch out some difficult-to-trigger waveforms with simpler ones.
 =item B<-tf>
 
 Disable filter modes that are not lowpass or lowpass+bandpass, and invert the output when filter is on.
+
+=item B<-nf>
+
+No filter emulation.  This will reduce CPU overhead at the cost
+of reduced emulation quality.
 
 =item B<-p>I<< <num> >>
 
