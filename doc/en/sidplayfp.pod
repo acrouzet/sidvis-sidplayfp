@@ -90,13 +90,13 @@ SID, 2 for the second one and 3 for the third.
 
 Disable envelopes.
 
+=item B<-nk>
+
+Disable 6581 "kinked DAC".
+
 =item B<-tw>
 
 Switch out some difficult-to-trigger waveforms with simpler ones.
-
-=item B<-tf>
-
-Disable filter modes that are not lowpass or lowpass+bandpass, and invert the output when filter is on.
 
 =item B<-nf>
 

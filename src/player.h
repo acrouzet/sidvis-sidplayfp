@@ -191,15 +191,15 @@ private:
         bool           enabled;
     } m_envelope;
 	
+	struct m_kinkdac_t
+    {
+        bool           enabled;
+    } m_kinkdac;	
+
     struct m_triggerwaves_t
     {
         bool           enabled;
     } m_triggerwaves;
-	
-	struct m_triggerfilter_t
-    {
-        bool           enabled;
-    } m_triggerfilter;
 
     struct m_filter_t
     {

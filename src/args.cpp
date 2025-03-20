@@ -214,12 +214,19 @@ int ConsolePlayer::args(int argc, const char *argv[])
                     err = true;
                 m_engCfg.frequency = (uint_least32_t) atoi (argv[i]+2);
             }
-            
+
             // No envelope options
             else if (strncmp (&argv[i][1], "ne", 2) == 0)
             {
                 if (argv[i][3] == '\0')
                     m_envelope.enabled = false;
+            }
+
+            // No kinked DAC options
+            else if (strncmp (&argv[i][1], "nk", 2) == 0)
+            {
+                if (argv[i][3] == '\0')
+                    m_kinkdac.enabled = false;
             }
 
             // Triggerwaves
@@ -228,14 +235,7 @@ int ConsolePlayer::args(int argc, const char *argv[])
                 if (argv[i][3] == '\0')
                     m_triggerwaves.enabled = true;
             }
-			
-            // Triggerfilter
-            else if (strncmp (&argv[i][1], "tf", 2) == 0)
-            {
-                if (argv[i][3] == '\0')
-                    m_triggerfilter.enabled = true;
-            }
-            
+
             // No filter options
             else if (strncmp (&argv[i][1], "nf", 2) == 0)
             {
@@ -447,7 +447,7 @@ int ConsolePlayer::args(int argc, const char *argv[])
             else if (std::strcmp (&argv[i][1], "cws") == 0)
             {
                 m_combinedWaveformsStrength  = SidConfig::STRONG;
-            }   
+            }
 #endif
             // File format conversions
             else if (argv[i][1] == 'w')
