@@ -215,18 +215,56 @@ int ConsolePlayer::args(int argc, const char *argv[])
                 m_engCfg.frequency = (uint_least32_t) atoi (argv[i]+2);
             }
 
+            // Channel muting
+            else if (argv[i][1] == 'u')
+            {
+                if (argv[i][2] == '\0')
+                    err = true;
+                else
+                {
+                    const unsigned int voice = atoi(&argv[i][2]);
+                    if (voice > 0 && voice <= m_mute_channel.size())
+                        m_mute_channel[voice-1] = true;
+                }
+            }
+
+            // Sample muting
+            else if (argv[i][1] == 'g')
+            {
+                if (argv[i][2] == '\0')
+                    err = true;
+                else
+                {
+                    const unsigned int chip = atoi(&argv[i][2]);
+                    if (chip > 0 && chip <= m_mute_samples.size())
+                        m_mute_samples[chip-1] = true;
+                }
+            }
+
+            // No filter options
+            else if (strncmp (&argv[i][1], "nf", 2) == 0)
+            {
+                if (argv[i][3] == '\0')
+                    m_filter.enabled = false;
+            }
+
+            else if (strncmp (&argv[i][1], "df", 2) == 0)
+            {
+                if (argv[i][3] == '\0')
+                    err = true;
+                else
+                {
+                    const unsigned int voice = atoi(&argv[i][3]);
+                    if (voice > 0 && voice <= m_dontfilter.size())
+                        m_dontfilter[voice-1] = true;
+                }
+            }
+
             // No envelope options
             else if (strncmp (&argv[i][1], "ne", 2) == 0)
             {
                 if (argv[i][3] == '\0')
-                    m_envelope.enabled = false;
-            }
-
-            // No kinked DAC options
-            else if (strncmp (&argv[i][1], "nk", 2) == 0)
-            {
-                if (argv[i][3] == '\0')
-                    m_kinkdac.enabled = false;
+                    m_noenvelopes.enabled = true;
             }
 
             // Triggerwaves
@@ -236,11 +274,11 @@ int ConsolePlayer::args(int argc, const char *argv[])
                     m_triggerwaves.enabled = true;
             }
 
-            // No filter options
-            else if (strncmp (&argv[i][1], "nf", 2) == 0)
+            // Kinked DAC options
+            else if (strncmp (&argv[i][1], "nk", 2) == 0)
             {
                 if (argv[i][3] == '\0')
-                    m_filter.enabled = false;
+                    m_nokinks.enabled = true;
             }
 
             // Track options
@@ -267,33 +305,6 @@ int ConsolePlayer::args(int argc, const char *argv[])
                 m_track.first = atoi(&argv[i][2]);
             }
 
-            // Channel muting
-            else if (argv[i][1] == 'u')
-            {
-                if (argv[i][2] == '\0')
-                    err = true;
-                else
-                {
-                    const unsigned int voice = atoi(&argv[i][2]);
-                    if (voice > 0 && voice <= m_mute_channel.size())
-                        m_mute_channel[voice-1] = true;
-                }
-            }
-
-#ifdef FEAT_SAMPLE_MUTE
-            // Sample muting
-            else if (argv[i][1] == 'g')
-            {
-                if (argv[i][2] == '\0')
-                    err = true;
-                else
-                {
-                    const unsigned int chip = atoi(&argv[i][2]);
-                    if (chip > 0 && chip <= m_mute_samples.size())
-                        m_mute_samples[chip-1] = true;
-                }
-            }
-#endif
             else if (argv[i][1] == 'p')
             {   // User forgot precision
                 if (argv[i][2] == '\0')

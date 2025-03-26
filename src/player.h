@@ -177,29 +177,13 @@ private:
 
     bool               m_autofilter;
 
-    std::bitset<9>     m_mute_channel;
-#ifdef FEAT_SAMPLE_MUTE
-    std::bitset<3>     m_mute_samples;
-#endif
-
     int  m_channels;
     int  m_precision;
     int  m_buffer_size;
 
-    struct m_envelope_t
-    {
-        bool           enabled;
-    } m_envelope;
-	
-	struct m_kinkdac_t
-    {
-        bool           enabled;
-    } m_kinkdac;	
+    std::bitset<9>     m_mute_channel;
 
-    struct m_triggerwaves_t
-    {
-        bool           enabled;
-    } m_triggerwaves;
+    std::bitset<3>     m_mute_samples;
 
     struct m_filter_t
     {
@@ -207,13 +191,30 @@ private:
         double         bias;
         // Filter parameters for reSIDfp
         double         filterCurve6581;
-#ifdef FEAT_FILTER_RANGE
+
         double         filterRange6581;
-#endif
+
         double         filterCurve8580;
 
         bool           enabled;
     } m_filter;
+
+    std::bitset<9>     m_dontfilter;
+
+    struct m_noenvelopes_t
+    {
+        bool           enabled;
+    } m_noenvelopes;
+
+    struct m_triggerwaves_t
+    {
+        bool           enabled;
+    } m_triggerwaves;
+
+    struct m_nokinks_t
+    {
+        bool           enabled;
+    } m_nokinks;
 
     struct m_driver_t
     {

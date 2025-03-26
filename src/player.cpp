@@ -343,10 +343,10 @@ ConsolePlayer::ConsolePlayer (const char * const name) :
     std::memset(m_registers, 0, 32*3);
 #endif
     // Other defaults
-    m_envelope.enabled     = true;
-    m_kinkdac.enabled      = true;
-    m_triggerwaves.enabled = false;
     m_filter.enabled       = true;
+    m_noenvelopes.enabled  = false;
+    m_triggerwaves.enabled = false;
+    m_nokinks.enabled      = false;
     m_driver.device        = nullptr;
     m_driver.sid           = EMU_RESIDFP;
     m_timer.start          = 0;
@@ -812,24 +812,47 @@ bool ConsolePlayer::open (void)
         displayError(m_engine.error ());
         return false;
     }
-    
-    m_engine.envelope(0, m_envelope.enabled);
-    m_engine.envelope(1, m_envelope.enabled);
-    m_engine.envelope(2, m_envelope.enabled);
-	
-    m_engine.kinkdac(0, m_kinkdac.enabled);
-    m_engine.kinkdac(1, m_kinkdac.enabled);
-    m_engine.kinkdac(2, m_kinkdac.enabled);
-	
+
+    m_engine.mute(0, 0, m_mute_channel[0]);
+    m_engine.mute(0, 1, m_mute_channel[1]);
+    m_engine.mute(0, 2, m_mute_channel[2]);
+    m_engine.mute(1, 0, m_mute_channel[3]);
+    m_engine.mute(1, 1, m_mute_channel[4]);
+    m_engine.mute(1, 2, m_mute_channel[5]);
+    m_engine.mute(2, 0, m_mute_channel[6]);
+    m_engine.mute(2, 1, m_mute_channel[7]);
+    m_engine.mute(2, 2, m_mute_channel[8]);
+
+    m_engine.mute(0, 3, m_mute_samples[0]);
+    m_engine.mute(1, 3, m_mute_samples[1]);
+    m_engine.mute(2, 3, m_mute_samples[2]);
+
+    m_engine.filter(0, m_filter.enabled);
+    m_engine.filter(1, m_filter.enabled);
+    m_engine.filter(2, m_filter.enabled);
+
+    m_engine.dontfilter(0, 0, m_dontfilter[0]);
+    m_engine.dontfilter(0, 1, m_dontfilter[1]);
+    m_engine.dontfilter(0, 2, m_dontfilter[2]);
+    m_engine.dontfilter(1, 0, m_dontfilter[3]);
+    m_engine.dontfilter(1, 1, m_dontfilter[4]);
+    m_engine.dontfilter(1, 2, m_dontfilter[5]);
+    m_engine.dontfilter(2, 0, m_dontfilter[6]);
+    m_engine.dontfilter(2, 1, m_dontfilter[7]);
+    m_engine.dontfilter(2, 2, m_dontfilter[8]);
+
+    m_engine.noenvelopes(0, m_noenvelopes.enabled);
+    m_engine.noenvelopes(1, m_noenvelopes.enabled);
+    m_engine.noenvelopes(2, m_noenvelopes.enabled);
+
     m_engine.triggerwaves(0, m_triggerwaves.enabled);
     m_engine.triggerwaves(1, m_triggerwaves.enabled);
     m_engine.triggerwaves(2, m_triggerwaves.enabled);
 
-#ifdef FEAT_FILTER_DISABLE
-    m_engine.filter(0, m_filter.enabled);
-    m_engine.filter(1, m_filter.enabled);
-    m_engine.filter(2, m_filter.enabled);
-#endif
+    m_engine.nokinks(0, m_nokinks.enabled);
+    m_engine.nokinks(1, m_nokinks.enabled);
+    m_engine.nokinks(2, m_nokinks.enabled);
+
 #ifdef FEAT_REGS_DUMP_SID
     if (
             (
@@ -847,21 +870,6 @@ bool ConsolePlayer::open (void)
     m_driver.selected = &m_driver.null;
     m_speed.current   = m_speed.max;
     m_engine.fastForward (100 * m_speed.current);
-
-    m_engine.mute(0, 0, m_mute_channel[0]);
-    m_engine.mute(0, 1, m_mute_channel[1]);
-    m_engine.mute(0, 2, m_mute_channel[2]);
-    m_engine.mute(1, 0, m_mute_channel[3]);
-    m_engine.mute(1, 1, m_mute_channel[4]);
-    m_engine.mute(1, 2, m_mute_channel[5]);
-    m_engine.mute(2, 0, m_mute_channel[6]);
-    m_engine.mute(2, 1, m_mute_channel[7]);
-    m_engine.mute(2, 2, m_mute_channel[8]);
-#ifdef FEAT_SAMPLE_MUTE
-    m_engine.mute(0, 3, m_mute_samples[0]);
-    m_engine.mute(1, 3, m_mute_samples[1]);
-    m_engine.mute(2, 3, m_mute_samples[2]);
-#endif
 
     // As yet we don't have a required songlength
     // so try the songlength database or keep the default
@@ -1146,11 +1154,11 @@ void ConsolePlayer::decodeKeys ()
             }
         break;
 
-        case A_UP_ARROW:     
+        case A_UP_ARROW:
             m_speed.current *= 2;
             if (m_speed.current > m_speed.max)
                 m_speed.current = m_speed.max;
-  
+
             m_engine.fastForward (100 * m_speed.current);
         break;
 
