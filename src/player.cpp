@@ -344,9 +344,9 @@ ConsolePlayer::ConsolePlayer (const char * const name) :
 #endif
     // Other defaults
     m_filter.enabled       = true;
-    m_noenvelopes.enabled  = false;
+    m_envelopes.enabled    = true;
     m_triggerwaves.enabled = false;
-    m_nokinks.enabled      = false;
+    m_kinkDAC.enabled      = true;
     m_driver.device        = nullptr;
     m_driver.sid           = EMU_RESIDFP;
     m_timer.start          = 0;
@@ -831,27 +831,27 @@ bool ConsolePlayer::open (void)
     m_engine.filter(1, m_filter.enabled);
     m_engine.filter(2, m_filter.enabled);
 
-    m_engine.dontfilter(0, 0, m_dontfilter[0]);
-    m_engine.dontfilter(0, 1, m_dontfilter[1]);
-    m_engine.dontfilter(0, 2, m_dontfilter[2]);
-    m_engine.dontfilter(1, 0, m_dontfilter[3]);
-    m_engine.dontfilter(1, 1, m_dontfilter[4]);
-    m_engine.dontfilter(1, 2, m_dontfilter[5]);
-    m_engine.dontfilter(2, 0, m_dontfilter[6]);
-    m_engine.dontfilter(2, 1, m_dontfilter[7]);
-    m_engine.dontfilter(2, 2, m_dontfilter[8]);
+    m_engine.dontFilter(0, 0, m_dontFilter[0]);
+    m_engine.dontFilter(0, 1, m_dontFilter[1]);
+    m_engine.dontFilter(0, 2, m_dontFilter[2]);
+    m_engine.dontFilter(1, 0, m_dontFilter[3]);
+    m_engine.dontFilter(1, 1, m_dontFilter[4]);
+    m_engine.dontFilter(1, 2, m_dontFilter[5]);
+    m_engine.dontFilter(2, 0, m_dontFilter[6]);
+    m_engine.dontFilter(2, 1, m_dontFilter[7]);
+    m_engine.dontFilter(2, 2, m_dontFilter[8]);
 
-    m_engine.noenvelopes(0, m_noenvelopes.enabled);
-    m_engine.noenvelopes(1, m_noenvelopes.enabled);
-    m_engine.noenvelopes(2, m_noenvelopes.enabled);
+    m_engine.envelopes(0, m_envelopes.enabled);
+    m_engine.envelopes(1, m_envelopes.enabled);
+    m_engine.envelopes(2, m_envelopes.enabled);
 
     m_engine.triggerwaves(0, m_triggerwaves.enabled);
     m_engine.triggerwaves(1, m_triggerwaves.enabled);
     m_engine.triggerwaves(2, m_triggerwaves.enabled);
 
-    m_engine.nokinks(0, m_nokinks.enabled);
-    m_engine.nokinks(1, m_nokinks.enabled);
-    m_engine.nokinks(2, m_nokinks.enabled);
+    m_engine.kinkDAC(0, m_kinkDAC.enabled);
+    m_engine.kinkDAC(1, m_kinkDAC.enabled);
+    m_engine.kinkDAC(2, m_kinkDAC.enabled);
 
 #ifdef FEAT_REGS_DUMP_SID
     if (

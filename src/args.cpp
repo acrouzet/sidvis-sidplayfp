@@ -255,19 +255,19 @@ int ConsolePlayer::args(int argc, const char *argv[])
                 else
                 {
                     const unsigned int voice = atoi(&argv[i][3]);
-                    if (voice > 0 && voice <= m_dontfilter.size())
-                        m_dontfilter[voice-1] = true;
+                    if (voice > 0 && voice <= m_dontFilter.size())
+                        m_dontFilter[voice-1] = true;
                 }
             }
 
-            // No envelope options
+            // Envelope options
             else if (strncmp (&argv[i][1], "ne", 2) == 0)
             {
                 if (argv[i][3] == '\0')
-                    m_noenvelopes.enabled = true;
+                    m_envelopes.enabled = false;
             }
 
-            // Triggerwaves
+            // Triggerwave options
             else if (strncmp (&argv[i][1], "tw", 2) == 0)
             {
                 if (argv[i][3] == '\0')
@@ -278,7 +278,7 @@ int ConsolePlayer::args(int argc, const char *argv[])
             else if (strncmp (&argv[i][1], "nk", 2) == 0)
             {
                 if (argv[i][3] == '\0')
-                    m_nokinks.enabled = true;
+                    m_kinkDAC.enabled = false;
             }
 
             // Track options

@@ -199,22 +199,22 @@ private:
         bool           enabled;
     } m_filter;
 
-    std::bitset<9>     m_dontfilter;
+    std::bitset<9>     m_dontFilter;
 
-    struct m_noenvelopes_t
+    struct m_envelopes_t
     {
         bool           enabled;
-    } m_noenvelopes;
+    } m_envelopes;
 
     struct m_triggerwaves_t
     {
         bool           enabled;
     } m_triggerwaves;
 
-    struct m_nokinks_t
+    struct m_kinkDAC_t
     {
         bool           enabled;
-    } m_nokinks;
+    } m_kinkDAC;
 
     struct m_driver_t
     {
